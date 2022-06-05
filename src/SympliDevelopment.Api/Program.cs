@@ -11,6 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSearchConfigurations(builder.Configuration);
+builder.Services.RegisterServices();
+builder.Services.AddSingleton(builder.Services.RegisterMapperProfile());
 builder.Services.AddHttpClient<HttpHandler>();
 
 var app = builder.Build();

@@ -11,13 +11,16 @@
         {
             _httpClient = httpClient;
         }
-        public async Task<HttpResponseMessage> SendRequestAsync(Uri uri)
+        public async Task<string> SendRequestAsync(Uri uri)
         {
             _httpClient.BaseAddress = uri;
             _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
 
             using var httpResponseMessage = await _httpClient.GetAsync(uri);
-            return httpResponseMessage;
+            httpResponseMessage.EnsureSuccessStatusCode();
+            var content = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            return content;
         }
     }
 }

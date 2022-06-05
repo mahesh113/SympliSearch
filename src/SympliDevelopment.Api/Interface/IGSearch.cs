@@ -2,7 +2,7 @@
 
 namespace SympliDevelopment.Api.Interface
 {
-    public interface ISearchEngine
+    public interface IGSearch
     {
         Task<GSResponse> Search(string url, string keywords);
     }

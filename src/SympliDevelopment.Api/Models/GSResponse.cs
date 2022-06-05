@@ -2,5 +2,6 @@
 {
     public class GSResponse
     {
+        public int MyProperty { get; set; }
     }
 }

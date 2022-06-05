@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SympliDevelopment.Api", "src\SympliDevelopment.Api\SympliDevelopment.Api.csproj", "{61314F67-521F-4CEB-BB11-D0C1D67AD08C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SympliAPI.Tests", "SympliAPI.Tests\SympliAPI.Tests.csproj", "{110C9382-1025-4E17-BAEC-337EC0E3113E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{61314F67-521F-4CEB-BB11-D0C1D67AD08C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61314F67-521F-4CEB-BB11-D0C1D67AD08C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61314F67-521F-4CEB-BB11-D0C1D67AD08C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110C9382-1025-4E17-BAEC-337EC0E3113E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110C9382-1025-4E17-BAEC-337EC0E3113E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110C9382-1025-4E17-BAEC-337EC0E3113E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110C9382-1025-4E17-BAEC-337EC0E3113E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
