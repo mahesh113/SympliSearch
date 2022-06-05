@@ -32,8 +32,6 @@ namespace SympliAPI.Tests
 
             fixture.Register(() => httpHandler);
             _sut = fixture.Create<GoogleSearch>();
-            //var configFake = new GConfig();
-            //_sut = new GoogleSearch(configFake,httpHandler);
         }
         [Fact]
         public async Task TestSearch()
@@ -42,18 +40,6 @@ namespace SympliAPI.Tests
 
             var ret = await _sut.Search("https://www.mysite.com.au", "australia");
             Assert.IsType<GoogleSearch>(ret);
-        }
-    }
-
-
-    public class GConfig : IOptions<GoogleSearchConfig>
-    {
-        public GoogleSearchConfig Value
-        {
-            get
-            {
-                return new GoogleSearchConfig(); // TODO: Add your settings for test here.
-            }
         }
     }
 }

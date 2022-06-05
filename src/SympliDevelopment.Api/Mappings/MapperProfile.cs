@@ -7,7 +7,7 @@ namespace SympliDevelopment.Api.Mappings
     {
         public MapperProfile()
         {
-            CreateMap<HttpResponseMessage, GSResponse>();
+            CreateMap<object, GSResponse>();
         }
     }
 }
