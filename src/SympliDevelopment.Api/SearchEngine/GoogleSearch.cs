@@ -11,7 +11,9 @@ namespace SympliDevelopment.Api.SearchEngine
         private readonly GoogleSearchConfig _config;
         private readonly IMapper _mapper;
         private readonly HttpHandler _httpHandler;
-        public GoogleSearch(IOptions<GoogleSearchConfig> options, HttpHandler httpHandler,
+        public GoogleSearch
+            (IOptions<GoogleSearchConfig> options, 
+            HttpHandler httpHandler,
             IMapper mapper)
         {
             _config = options.Value;

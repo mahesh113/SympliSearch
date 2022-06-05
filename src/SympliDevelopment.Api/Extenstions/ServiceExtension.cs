@@ -21,7 +21,7 @@ namespace SympliDevelopment.Api.Extenstions
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new MapperProfile.MapperProfile());
+                cfg.AddProfile(new MapperProfile());
             });
             return config.CreateMapper();
         }
