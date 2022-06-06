@@ -3,7 +3,6 @@ using System.Net;
 using SympliDevelopment.Api.Service;
 using Microsoft.Extensions.Options;
 using SympliDevelopment.Api.Models;
-using Newtonsoft;
 using Newtonsoft.Json;
 namespace SympliAPI.Tests
 {
@@ -51,15 +50,20 @@ namespace SympliAPI.Tests
         [Fact]
         public async Task TestSearchWithAllDummyData()
         {
+            //Arrange
             Setup();
+
+            //Act
             var ret = await _sut.Search("https://www.mysite.com.au", "australia");
 
+            //Assert
             Assert.NotNull(ret);
             Assert.IsType<string>(ret);
         }
         [Fact]
         public async Task CodeTryingToAccessPageWithNoResult()
         {
+            //Arrange
             Setup();
             httpResponse = fixture.Create<GSResponse>();
             httpResponse.Items.Clear(); // No Items here
@@ -78,8 +82,10 @@ namespace SympliAPI.Tests
             HttpHandler httpHandler = new HttpHandler(client);
 
             fixture.Register(() => httpHandler);
-            var ret = await _sut.Search("https://www.mysite.com.au", "australia");
 
+            //Act
+            var ret = await _sut.Search("https://www.mysite.com.au", "australia");
+            //Assert
             Assert.NotNull(ret);
             Assert.IsType<string>(ret);
             Assert.Equal("0",ret);
@@ -88,8 +94,9 @@ namespace SympliAPI.Tests
         [Fact]
         public async Task SearchResultsFindsTheUrlInResults()
         {
+            //Arrange
             string url = "https://www.mysite.com.au";
-            //Setup();
+           
             fixture = new Fixture() { RepeatCount = 10 }.Customize(new AutoMoqCustomization()); // create 10 items on each create
             mockFactory = fixture.Freeze<Mock<IHttpClientFactory>>();
             httpResponse = fixture.Create<GSResponse>(); // same response object returned on every page.
@@ -113,8 +120,10 @@ namespace SympliAPI.Tests
             optionGSConfig.Setup(x => x.Value).Returns(_config);
             _sut = fixture.Create<GoogleSearch>();
 
+            //Act
             var ret = await _sut.Search(url, "australia");
 
+            //Assert
             Assert.NotNull(ret);
             Assert.IsType<string>(ret);
             Assert.Equal("1,11,21,31,41,51,61,71,81,91", ret);
