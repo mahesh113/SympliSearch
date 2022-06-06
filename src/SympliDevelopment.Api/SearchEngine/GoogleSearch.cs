@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft;
+using System.Text;
+using SympliDevelopment.Api.Extenstions;
 
 namespace SympliDevelopment.Api.SearchEngine
 {
     public class GoogleSearch : IGSearch
     {
-        private readonly GoogleSearchConfig _config;
+        private readonly GoogleSearchConfig _gsConfig;
         private readonly IMapper _mapper;
         private readonly HttpHandler _httpHandler;
         public GoogleSearch
@@ -20,7 +22,7 @@ namespace SympliDevelopment.Api.SearchEngine
             HttpHandler httpHandler,
             IMapper mapper)
         {
-            _config = options.Value;
+            _gsConfig = options.Value;
             _httpHandler = httpHandler;
             _mapper = mapper;
         }
@@ -38,8 +40,8 @@ namespace SympliDevelopment.Api.SearchEngine
             List<int> retList = new List<int>();
             var queryParams = new Dictionary<string, string>()
 {
-                {"key", _config.Key },
-                {"cx", _config.SearchEngineId },
+                {"key", _gsConfig.Key },
+                {"cx", _gsConfig.SearchEngineId },
                 {"q", keywords },
                 {"start", "1" }
             };
@@ -47,7 +49,7 @@ namespace SympliDevelopment.Api.SearchEngine
             {
                 int start = i * 10 + 1; // 1, 11, 21 .... 91
                 queryParams["start"] = start.ToString();
-                string _uri = QueryHelpers.AddQueryString(_config.Url, queryParams);
+                string _uri = QueryHelpers.AddQueryString(_gsConfig.Url, queryParams);
                 Uri uri = new Uri(_uri);
                 var resp = await _httpHandler.SendRequestAsync(uri);
 
@@ -58,8 +60,8 @@ namespace SympliDevelopment.Api.SearchEngine
             }
             if(retList.Count > 0)
                 ret = JsonConvert.SerializeObject(retList);
-
-            return ret;
+            
+            return ret.ToPlainArray();
         }
         /// <summary>
         /// Find the results which are from link as in <paramref name="url"/>
