@@ -13,7 +13,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddResponseCaching();
 builder.Services.AddSearchConfigurations(builder.Configuration);
 builder.Services.RegisterServices();
-builder.Services.AddSingleton(builder.Services.RegisterMapperProfile());
 builder.Services.AddHttpClient<HttpHandler>();
 
 var app = builder.Build();

@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.Configuration;
-using SympliDevelopment.Api.Mappings;
-using SympliDevelopment.Api.Interface;
+﻿using SympliDevelopment.Api.Interface;
 using SympliDevelopment.Api.Models;
 using SympliDevelopment.Api.SearchEngine;
 
@@ -25,13 +22,5 @@ namespace SympliDevelopment.Api.Extenstions
             services.AddTransient<IGSearch, GoogleSearch>();
         }
 
-        public static IMapper RegisterMapperProfile(this IServiceCollection collection)
-        {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MapperProfile());
-            });
-            return config.CreateMapper();
-        }
     }
 }

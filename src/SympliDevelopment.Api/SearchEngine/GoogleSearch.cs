@@ -2,7 +2,6 @@
 using SympliDevelopment.Api.Interface;
 using SympliDevelopment.Api.Models;
 using SympliDevelopment.Api.Service;
-using AutoMapper;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Text.Json;
 using Newtonsoft.Json;
@@ -15,16 +14,13 @@ namespace SympliDevelopment.Api.SearchEngine
     public class GoogleSearch : IGSearch
     {
         private readonly GoogleSearchConfig _gsConfig;
-        private readonly IMapper _mapper;
         private readonly HttpHandler _httpHandler;
         public GoogleSearch
             (IOptions<GoogleSearchConfig> options, 
-            HttpHandler httpHandler,
-            IMapper mapper)
+            HttpHandler httpHandler)
         {
             _gsConfig = options.Value;
             _httpHandler = httpHandler;
-            _mapper = mapper;
         }
         /// <summary>
         /// Search on Google using the API key. Key is configured to search on entire web,
@@ -61,7 +57,7 @@ namespace SympliDevelopment.Api.SearchEngine
             if(retList.Count > 0)
                 ret = JsonConvert.SerializeObject(retList);
             
-            return ret.ToPlainArray();
+            return ret.ToPlainString();
         }
         /// <summary>
         /// Find the results which are from link as in <paramref name="url"/>

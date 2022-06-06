@@ -8,7 +8,7 @@
         /// </summary>
         /// <param name="str">string with comma separated numbers</param>
         /// <returns>same list without brackets</returns>
-        public static string ToPlainArray(this string str)
+        public static string ToPlainString(this string str)
         {
             if (str == null) return null;
             else if(str.Length < 2) return str; // could be 0 already
