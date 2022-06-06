@@ -52,6 +52,8 @@ namespace SympliDevelopment.Api.SearchEngine
                 var resp = await _httpHandler.SendRequestAsync(uri);
 
                 var allResults = JsonConvert.DeserializeObject <GSResponse>(resp);
+                if (allResults == null || allResults.Items?.Count == 0)
+                    break;
                 retList.AddRange(FindLinkInResult(url, allResults, start));
             }
             if(retList.Count > 0)
@@ -72,7 +74,8 @@ namespace SympliDevelopment.Api.SearchEngine
             int counter = offset;
             foreach (var item in allResults.Items)
             {
-                if(item.DisplayLink.Contains(url)|| item.Link.Contains(url))
+                if(item.DisplayLink.Contains(url)|| item.Link.Contains(url)
+                    || url.Contains(item.DisplayLink))
                 {
                     ret.Add(counter);
                 }

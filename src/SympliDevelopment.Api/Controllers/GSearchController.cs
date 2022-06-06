@@ -16,6 +16,7 @@ namespace SympliDevelopment.Api.Controllers
             _gs = s;
         }
         [HttpGet("keywords")]
+        [ResponseCache(VaryByHeader = "User-Agent", Duration = 30)]
         public async Task<IActionResult> GetResult([FromQuery] string url, [FromQuery] string keywords)
         {
             if (string.IsNullOrEmpty(url))

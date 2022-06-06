@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddResponseCaching();
 builder.Services.AddSearchConfigurations(builder.Configuration);
 builder.Services.RegisterServices();
 builder.Services.AddSingleton(builder.Services.RegisterMapperProfile());
@@ -25,7 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
+app.UseResponseCaching();
 app.MapControllers();
 
 app.Run();
